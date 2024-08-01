@@ -46,6 +46,10 @@ body {
 
 }
 
-.zero {
-    grid-column: 1 /span 2;
+#clear {
+    grid-column: 1 / span 2;
+}
+
+#equal {
+    grid-column: 3 / span 2;
 }

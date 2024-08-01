@@ -1,29 +1,51 @@
-let numbers = document.querySelectorAll("[data-number]");
-let allClear = document.querySelector("[data-ac]");
-let current = document.getElementById("current");
+const numbers = document.querySelectorAll("[data-number]");
+const allClear = document.querySelector("[data-clear]");
+const current = document.querySelector("[data-current]");
+const previous = document.querySelector("[data-previous]");
+const operators = document.querySelectorAll("[data-operator]");
 
 class Calculator {
-  constructor(currentOp, previousOp) {
-    this.currentOp = currentOp;
-    this.previousOp = previousOp;
+  constructor(current, previous) {
+    this.current = current;
+    this.previous = previous;
   }
 
   clear() {
-    this.currentOp.innerText = "";
-    this.previousOp.innerText = "";
-  }
-  appendNumbers(num) {
-    this.previousOp.innerText = num + this.currentOp.innerText;
-    this.currentOp.innerText = num;
+    this.current = "";
+    this.previous = "";
+    this.operation = undefined;
   }
 
-  updateDisplay()
+  delete() {}
+
+  appendNumbers(num) {
+    this.current = current.innerText += num.innerText;
+
+    console.log(num.innerText);
+  }
+
+  calculate() {}
+
+  updateDisplay() {
+    current.innerText = this.current;
+    previous.innerText = this.previous;
+  }
 }
 
 const calculator = new Calculator(current, previous);
 
 numbers.forEach((num) => {
-  num.addEventListener("click", calculator.appendNumbers(num.innerText));
+  num.addEventListener("click", () => {
+    calculator.appendNumbers(num);
+    calculator.updateDisplay();
+  });
 });
 
-allClear.addEventListener("click", calculator.clear);
+allClear.addEventListener("click", () => {
+  //calculator.clear();
+  //calculator.updateDisplay();
+  calculator.clear();
+  calculator.updateDisplay();
+});
+
+console.log(numbers);
