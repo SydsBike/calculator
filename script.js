@@ -6,6 +6,7 @@ const currentDisplay = document.querySelector("[data-current]");
 const previousDisplay = document.querySelector("[data-previous]");
 const operators = document.querySelectorAll("[data-operator]");
 const equals = document.querySelector("[data-equal]");
+const del = document.querySelector("[data-delete]");
 
 class Calculator {
   constructor(currentDisplayText, previousDisplayText) {
@@ -21,7 +22,9 @@ class Calculator {
     this.operation = undefined;
   }
 
-  delete() {}
+  delete() {
+    this.currentOp = this.currentOp.slice(0, -1);
+  }
 
   appendNumber(num) {
     if (num === "." && this.currentOp.includes(".")) {
@@ -92,5 +95,10 @@ operators.forEach((ops) => {
 
 equals.addEventListener("click", () => {
   calculator.compute();
+  calculator.updateDisplay();
+});
+
+del.addEventListener("click", () => {
+  calculator.delete();
   calculator.updateDisplay();
 });
