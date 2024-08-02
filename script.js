@@ -11,38 +11,39 @@ class Calculator {
   constructor(currentDisplayText, previousDisplayText) {
     this.currentDisplayText = currentDisplayText;
     this.previousDisplayText = previousDisplayText;
+    this.clear();
+    this.updateDisplay();
   }
 
   clear() {
-    this.currentDisplayText = "";
-    this.previousDisplayText = "";
+    this.currentOp = "";
+    this.previousOp = "";
     this.operation = undefined;
   }
 
   delete() {}
 
   appendNumber(num) {
-    if (num === "." && this.currentDisplayText.includes(".")) {
+    if (num === "." && this.currentOp.includes(".")) {
       return;
     } else {
-      this.currentDisplayText =
-        this.currentDisplayText.toString() + num.toString();
+      this.currentOp = this.currentOp.toString() + num.toString();
     }
   }
   chooseOperation(operation) {
-    if (this.currentDisplayText === "") return;
-    if (this.previousDisplayText !== "") {
+    if (this.currentOp === "") return;
+    if (this.previousOp !== "") {
       this.compute();
     }
     this.operation = operation;
-    this.previousDisplayText = this.currentDisplayText;
-    this.currentDisplayText = "";
+    this.previousOp = this.currentOp;
+    this.currentOp = "";
   }
 
   compute() {
     let compute;
-    const prev = parseFloat(this.previousDisplayText);
-    const current = parseFloat(this.currentDisplayText);
+    const prev = parseFloat(this.previousOp);
+    const current = parseFloat(this.currentOp);
     if (isNaN(prev) || isNaN(current)) return;
     switch (this.operation) {
       case "÷":
@@ -57,13 +58,17 @@ class Calculator {
       case "-":
         compute = prev - current;
         break;
+      default:
+        return;
     }
-    this.previousDisplayText = compute.toString();
+    this.currentOp = compute.toString();
+    this.operation = undefined;
+    this.previousOp = "";
   }
 
   updateDisplay() {
-    currentDisplay.innerText = this.currentDisplayText;
-    previousDisplay.innerText = this.previousDisplayText;
+    this.currentDisplayText.innerText = this.currentOp;
+    this.previousDisplayText.innerText = this.previousOp;
   }
 }
 
@@ -80,6 +85,7 @@ numbers.forEach((num) => {
 operators.forEach((ops) => {
   ops.addEventListener("click", () => {
     calculator.chooseOperation(ops.innerText);
+
     calculator.updateDisplay();
   });
 });
