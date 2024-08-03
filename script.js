@@ -2,8 +2,8 @@ import { allClearHandler } from "./module.js";
 
 const numbers = document.querySelectorAll("[data-number]");
 const allClear = document.querySelector("[data-clear]");
-const currentDisplay = document.querySelector("[data-current]");
-const previousDisplay = document.querySelector("[data-previous]");
+const currentDisplay = document.getElementById("current");
+const previousDisplay = document.getElementById("previous");
 const operators = document.querySelectorAll("[data-operator]");
 const equals = document.querySelector("[data-equal]");
 const del = document.querySelector("[data-delete]");
@@ -12,8 +12,8 @@ class Calculator {
   constructor(currentDisplayText, previousDisplayText) {
     this.currentDisplayText = currentDisplayText;
     this.previousDisplayText = previousDisplayText;
-    this.clear();
-    this.updateDisplay();
+    //this.clear();
+    //this.updateDisplay();
   }
 
   clear() {
