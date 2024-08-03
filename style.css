@@ -28,14 +28,9 @@ body {
   align-content: center;
 }
 
-.previous {
-  grid-area: 1 / 1 / 1 /5;
-  background-color: black;
-  color: antiquewhite;
-  text-align: right;
-}
-.current {
-  grid-area: 2/1/2/5;
+.display {
+  height: 100%;
+  grid-area: 1 / 1 / 2 /5;
   background-color: black;
   color: antiquewhite;
   text-align: right;
