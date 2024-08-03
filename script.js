@@ -7,6 +7,8 @@ const previousDisplay = document.getElementById("previous");
 const operators = document.querySelectorAll("[data-operator]");
 const equals = document.querySelector("[data-equal]");
 const del = document.querySelector("[data-delete]");
+const launchBtn = document.querySelector("[data-visible]");
+const grid = document.querySelector("[data-grid]");
 
 class Calculator {
   constructor(currentDisplayText, previousDisplayText) {
